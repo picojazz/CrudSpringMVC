@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org" >
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <title>Tous les produits</title>
+</head>
+<body>
+    <h1 class="text-center">liste des produits</h1>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">tous les produits</div>
+                <div class="panel-body">
+                    <form th:action="@{all}" method="get">
+                        <div class="form-inline">
+                            <label for="">Mot cle</label>
+                            <input type="text" name="motcle" class="form-control" th:value="${mc}"/>
+                            <input type="submit" class="btn btn-primary" value="OK"/>
+                        </div>
+                    </form>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Designation</th>
+                                <th>Prix</th>
+                                <th>Quantite</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="p:${produits}">
+                            <td th:text="${p.id}"></td>
+                            <td th:text="${p.designation}"></td>
+                            <td th:text="${p.prix}"></td>
+                            <td th:text="${p.quantite}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
