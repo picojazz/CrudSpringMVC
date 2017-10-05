@@ -17,8 +17,11 @@ public class ProduitController {
     private ProduitRepository pr ;
 
     @RequestMapping(value = "/all")
-    public String index(Model model , @RequestParam(name = "motcle",defaultValue = "") String mc){
-        Page<Produit> produits = pr.rechParMc("%"+mc+"%",new PageRequest(0,15));
+    public String index(Model model , @RequestParam(name = "motcle",defaultValue = "")String mc,
+                        @RequestParam(name = "page",defaultValue = "0")int p,
+                        @RequestParam(name = "size",defaultValue = "10") int s){
+
+        Page<Produit> produits = pr.rechParMc("%"+mc+"%",new PageRequest(p,s));
 
         model.addAttribute("produits",produits);
     model.addAttribute("mc",mc);
