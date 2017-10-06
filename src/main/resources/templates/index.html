@@ -9,7 +9,9 @@
 <body>
     <h1 class="text-center">liste des produits</h1>
     <div class="row">
+
         <div class="col-md-10 col-md-offset-1">
+            <div th:class="${type}" th:text="${message}"></div>
             <div class="panel panel-primary">
                 <div class="panel-heading">tous les produits</div>
                 <div class="panel-body">
@@ -27,6 +29,8 @@
                                 <th>Designation</th>
                                 <th>Prix</th>
                                 <th>Quantite</th>
+                                <th>modifier</th>
+                                <th>supprimer</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,13 +39,16 @@
                             <td th:text="${p.designation}"></td>
                             <td th:text="${p.prix}"></td>
                             <td th:text="${p.quantite}"></td>
+                            <td><a href="#" class="btn btn-success">modifier</a></td>
+                            <td><a onclick="return confirm('etes vous sur de vouloir supprimer ce produit ?')" th:href="@{delete(id=${p.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
                         </tr>
                         </tbody>
                     </table>
                     <ul class="nav nav-pills">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li th:each="p,status:${pageTot}" th:class="${pc}==${status.index}?'active':''">
+                            <a th:href="@{all(page=${status.index},motcle=${mc})}"   th:text="${status.index}"></a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
