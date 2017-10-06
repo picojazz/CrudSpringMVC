@@ -37,7 +37,7 @@ public class ProduitController {
     public String delete(Model model , RedirectAttributes redirectAttributes,Long id,String mc,int p){
         pr.delete(id);
         redirectAttributes.addFlashAttribute("type","alert alert-success");
-        redirectAttributes.addFlashAttribute("message","le produit "+id+" a bien etait supprimé !");
+        redirectAttributes.addFlashAttribute("message","le produit "+id+" a bien été supprimé !");
 
 
         return "redirect:all?motcle="+mc+"&page="+p;
