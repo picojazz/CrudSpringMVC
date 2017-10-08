@@ -8,9 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class ProduitController {
@@ -34,13 +38,49 @@ public class ProduitController {
 
     }
     @RequestMapping(value = "/delete")
-    public String delete(Model model , RedirectAttributes redirectAttributes,Long id,String mc,int p){
+    public String delete(RedirectAttributes redirectAttributes,Long id,String mc,int p){
         pr.delete(id);
         redirectAttributes.addFlashAttribute("type","alert alert-success");
         redirectAttributes.addFlashAttribute("message","le produit "+id+" a bien été supprimé !");
 
 
         return "redirect:all?motcle="+mc+"&page="+p;
+    }
+    @RequestMapping(value = "/new",method = RequestMethod.GET )
+    public String ajouter(Model model){
+        Produit p = new Produit();
+        model.addAttribute("produit",p);
+        return "new";
+    }
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public String add(@Valid Produit p, BindingResult result,RedirectAttributes redirectAttributes){
+        if (result.hasErrors()){
+            return "new";
+        }
+        pr.save(p);
+        redirectAttributes.addFlashAttribute("type","alert alert-success");
+        redirectAttributes.addFlashAttribute("message","le produit "+p.getDesignation()+" a bien été enregistrer !");
+        return "redirect:all";
+    }
+    @RequestMapping(value = "/edit",method = RequestMethod.GET )
+    public String edit(Model model, Long id){
+
+        model.addAttribute("produit", pr.findOne(id));
+
+        return "edit";
+    }
+    @RequestMapping(value = "/edit",method = RequestMethod.POST )
+    public String editP(@Valid Produit p,BindingResult result,RedirectAttributes redirectAttributes,
+                        @RequestParam(name = "id") Long id){
+        p.setId(id);
+        if (result.hasErrors()){
+            return "edit";
+        }
+        pr.save(p);
+        redirectAttributes.addFlashAttribute("type","alert alert-success");
+        redirectAttributes.addFlashAttribute("message","le produit "+p.getId()+" a bien été modifier !");
+
+        return "redirect:all";
     }
 
 }

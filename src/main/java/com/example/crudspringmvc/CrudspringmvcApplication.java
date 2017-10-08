@@ -16,8 +16,8 @@ public class CrudspringmvcApplication {
 
 		org.springframework.context.ApplicationContext ctx = SpringApplication.run(CrudspringmvcApplication.class, args);
 			ProduitRepository pr = ctx.getBean(ProduitRepository.class);
-			pr.save(new Produit("savon",200,35));
-            pr.save(new Produit("bic",100,25));
+			//pr.save(new Produit("savon",200,35));
+            //pr.save(new Produit("bic",100,25));
 
 			pr.findAll().forEach(p -> System.out.println(p.toString()));
 	}
