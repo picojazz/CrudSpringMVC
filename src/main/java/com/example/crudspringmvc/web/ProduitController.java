@@ -82,5 +82,9 @@ public class ProduitController {
 
         return "redirect:all";
     }
+    @RequestMapping(value = "/")
+    public String home(){
+        return "redirect:all";
+    }
 
 }
