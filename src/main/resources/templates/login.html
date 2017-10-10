@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <title>Login Page</title>
+</head>
+<body>
+<div class="container">
+    <div class="row"><br />
+        <div class="alert alert-danger" th:if="${param.error}">Username ou password incorrect !</div>
+        <div class="alert alert-success" th:if="${param.logout}">deconnexion reussie !</div>
+        <br />
+        <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login Page</h3>
+            </div>
+            <div class="panel-body">
+                <form th:action="@{login}" method="post">
+                    <div class="form-group">
+                        <label for="">Username :</label>
+                        <input type="text" name="username" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password :</label>
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Se Connecter</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

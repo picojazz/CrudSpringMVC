@@ -26,16 +26,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .withUser("admin").password("azerty").roles("admin");*/
 
        auth.jdbcAuthentication().dataSource(dataSource)
-               .usersByUsernameQuery("select login as principal,password as credentials ,active from users where login =?")
-
+               .usersByUsernameQuery("select username as principal,password as credentials ,active from user where username =?")
+               .authoritiesByUsernameQuery("select u.username as principal,r.role as role from user u ,role r, users_roles ur where u.id=ur.user_id and r.id=ur.role_id and u.username=?")
+               .rolePrefix("ROLE_")
                .passwordEncoder(new Md5PasswordEncoder());
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin();
-        http.authorizeRequests().antMatchers("/all").permitAll();
+        http.formLogin().loginPage("/login");
+        http.authorizeRequests().antMatchers("/all").authenticated();
         http.authorizeRequests().antMatchers("/new","/delete","/edit").hasRole("admin");
+        //http.exceptionHandling().accessDeniedPage("/403");
+
     }
 }
