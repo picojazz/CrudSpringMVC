@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head xmlns:th="http://www.thymeleaf.org" >
+<html  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorator="layout" >
+<head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
@@ -8,11 +9,14 @@
 </head>
 <body>
     <h1 class="text-center">liste des produits</h1>
-    <div class="row">
+    <div class="row" layout:fragment="content">
 
         <div class="col-md-10 col-md-offset-1">
-            <a th:href="@{new}" class="btn btn-primary btn-lg">nouveau produit</a><br />
+            <div class="text-center">
+            <a th:href="@{new}" class="btn btn-primary btn-lg">nouveau produit</a>
+            </div><br />
             <div th:class="${type}" th:text="${message}"></div>
+            <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">tous les produits</div>
                 <div class="panel-body">
