@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+
+    <title>nouveau Categorie</title>
+</head>
+<body>
+
+    <div class="container" layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-8 col-md-offset-2">
+                <br /><br />
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ajout Categorie</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form th:action="@{cat-new}" method="post" th:object="${categorie}">
+                        <div class="form-group">
+                            <label>Nom de la categorie</label>
+                            <input type="text"  class="form-control"  th:field="*{categorie}" />
+                            <span class="text-danger" th:errors="*{categorie}"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

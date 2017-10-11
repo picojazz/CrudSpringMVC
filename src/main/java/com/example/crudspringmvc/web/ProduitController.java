@@ -1,6 +1,7 @@
 package com.example.crudspringmvc.web;
 
 
+import com.example.crudspringmvc.dao.CategorieRepository;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import javax.validation.Valid;
 public class ProduitController {
     @Autowired
     private ProduitRepository pr ;
+    @Autowired
+    private CategorieRepository cr;
 
     @RequestMapping(value = "/all")
     public String index(Model model , @RequestParam(name = "motcle",defaultValue = "")String mc,
@@ -49,6 +52,7 @@ public class ProduitController {
     @RequestMapping(value = "/new",method = RequestMethod.GET )
     public String ajouter(Model model){
         Produit p = new Produit();
+        model.addAttribute("categories",cr.findAll());
         model.addAttribute("produit",p);
         return "new";
     }
@@ -64,7 +68,7 @@ public class ProduitController {
     }
     @RequestMapping(value = "/edit",method = RequestMethod.GET )
     public String edit(Model model, Long id){
-
+        model.addAttribute("categories",cr.findAll());
         model.addAttribute("produit", pr.findOne(id));
 
         return "edit";

@@ -2,10 +2,7 @@ package com.example.crudspringmvc.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -21,14 +18,19 @@ public class Produit implements Serializable{
     private int prix;
     @NotNull
     private int quantite;
+    @ManyToOne
+    @JoinColumn(name = "id_categorie")
+    @NotNull
+    private Categorie categorie;
 
     public Produit() {
     }
 
-    public Produit( String designation, int prix, int quantite) {
+    public Produit(String designation, int prix, int quantite, Categorie categorie) {
         this.designation = designation;
         this.prix = prix;
         this.quantite = quantite;
+        this.categorie = categorie;
     }
 
     public Long getId() {
@@ -63,6 +65,14 @@ public class Produit implements Serializable{
         this.quantite = quantite;
     }
 
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
     @Override
     public String toString() {
         return "Produit{" +
@@ -70,6 +80,7 @@ public class Produit implements Serializable{
                 ", designation='" + designation + '\'' +
                 ", prix=" + prix +
                 ", quantite=" + quantite +
+                ", categorie=" + categorie.getCategorie() +
                 '}';
     }
 }
