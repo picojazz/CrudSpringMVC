@@ -22,6 +22,7 @@ public class Produit implements Serializable{
     @JoinColumn(name = "id_categorie")
     @NotNull
     private Categorie categorie;
+    private String photo;
 
     public Produit() {
     }
@@ -71,6 +72,14 @@ public class Produit implements Serializable{
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override

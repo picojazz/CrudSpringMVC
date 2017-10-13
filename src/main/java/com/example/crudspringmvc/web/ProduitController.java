@@ -4,18 +4,27 @@ package com.example.crudspringmvc.web;
 import com.example.crudspringmvc.dao.CategorieRepository;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.Produit;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @Controller
 public class ProduitController {
@@ -23,6 +32,8 @@ public class ProduitController {
     private ProduitRepository pr ;
     @Autowired
     private CategorieRepository cr;
+    @Value("${imgDir}")
+    private String dirImage;
 
     @RequestMapping(value = "/all")
     public String index(Model model , @RequestParam(name = "motcle",defaultValue = "")String mc,
@@ -36,6 +47,7 @@ public class ProduitController {
         model.addAttribute("mc",mc);
         model.addAttribute("pageTot",pageTotals);
         model.addAttribute("pc",p);
+        System.out.println(dirImage);
 
     return "index";
 
@@ -57,11 +69,15 @@ public class ProduitController {
         return "new";
     }
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String add(@Valid Produit p, BindingResult result,RedirectAttributes redirectAttributes){
+    public String add(@Valid Produit p, BindingResult result, RedirectAttributes redirectAttributes,
+                      @RequestParam(name = "image") MultipartFile file) throws IOException {
         if (result.hasErrors()){
             return "new";
         }
         pr.save(p);
+        if (!(file.isEmpty())){
+            file.transferTo(new File(dirImage+p.getId()));
+        }
         redirectAttributes.addFlashAttribute("type","alert alert-success");
         redirectAttributes.addFlashAttribute("message","le produit "+p.getDesignation()+" a bien été enregistrer !");
         return "redirect:all";
@@ -75,12 +91,15 @@ public class ProduitController {
     }
     @RequestMapping(value = "/edit",method = RequestMethod.POST )
     public String editP(@Valid Produit p,BindingResult result,RedirectAttributes redirectAttributes,
-                        @RequestParam(name = "id") Long id){
+                        @RequestParam(name = "id") Long id ,@RequestParam(name = "image") MultipartFile file) throws IOException {
         p.setId(id);
         if (result.hasErrors()){
             return "edit";
         }
         pr.save(p);
+        if (!(file.isEmpty())){
+            file.transferTo(new File(dirImage+p.getId()));
+        }
         redirectAttributes.addFlashAttribute("type","alert alert-success");
         redirectAttributes.addFlashAttribute("message","le produit "+p.getId()+" a bien été modifier !");
 
@@ -89,6 +108,14 @@ public class ProduitController {
     @RequestMapping(value = "/")
     public String home(){
         return "redirect:all";
+    }
+
+    @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] photo(Long id ) throws Exception {
+
+        File file = new File(dirImage+id);
+        return IOUtils.toByteArray(new FileInputStream(file));
     }
 
 }
