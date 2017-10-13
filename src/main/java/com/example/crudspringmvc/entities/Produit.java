@@ -80,7 +80,7 @@ public class Produit implements Serializable{
                 ", designation='" + designation + '\'' +
                 ", prix=" + prix +
                 ", quantite=" + quantite +
-                ", categorie=" + categorie.getCategorie() +
+                ", categorie=" + categorie.getName() +
                 '}';
     }
 }

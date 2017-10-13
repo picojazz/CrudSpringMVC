@@ -52,14 +52,40 @@ public class CategorieController {
         return "cat-new";
     }
     @RequestMapping(value = "/cat-new", method = RequestMethod.POST)
-    public String add(@Valid Categorie cat, BindingResult result, RedirectAttributes redirectAttributes){
+    public String add(@Valid Categorie categorie, BindingResult result, RedirectAttributes redirectAttributes){
         if (result.hasErrors()){
             return "cat-new";
         }
-        cr.save(cat);
+        cr.save(categorie);
         redirectAttributes.addFlashAttribute("type","alert alert-success");
-        redirectAttributes.addFlashAttribute("message","la categorie "+cat.getCategorie()+" a bien été enregistrer !");
+        redirectAttributes.addFlashAttribute("message","la categorie "+categorie.getName()+" a bien été enregistrer !");
         return "redirect:cat-all";
+    }
+    @RequestMapping(value = "/cat-edit",method = RequestMethod.GET )
+    public String edit(Model model, Integer id){
+        model.addAttribute("categorie", cr.findOne(id));
+
+        return "cat-edit";
+    }
+    @RequestMapping(value = "/cat-edit",method = RequestMethod.POST )
+    public String editC(@Valid Categorie categorie,BindingResult result,RedirectAttributes redirectAttributes,
+                        @RequestParam(name = "id") Integer id){
+        categorie.setId(id);
+        if (result.hasErrors()){
+            return "cat-edit";
+        }
+        cr.save(categorie);
+        redirectAttributes.addFlashAttribute("type","alert alert-success");
+        redirectAttributes.addFlashAttribute("message","la categorie "+ categorie.getName()+" a bien été modifier !");
+
+        return "redirect:cat-all";
+    }
+    @RequestMapping(value = "/cat-voir")
+    public String voir(Model model, Integer id){
+        model.addAttribute("categorie",cr.findOne(id));
+
+        return "cat-voir";
+
     }
 
 }

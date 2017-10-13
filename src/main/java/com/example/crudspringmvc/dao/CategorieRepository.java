@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategorieRepository extends JpaRepository<Categorie,Integer>{
-    public Categorie findCategorieByCategorie(String categorie);
-    @Query("select  c from Categorie c where c.categorie like :x")
+    public Categorie findCategorieByName(String name);
+    @Query("select  c from Categorie c where c.name like :x")
     public Page<Categorie> rechParCat(@Param("x")String mc , Pageable pageable);
 }

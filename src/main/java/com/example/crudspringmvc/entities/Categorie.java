@@ -10,12 +10,12 @@ public class Categorie {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty
-    private String categorie;
-    @OneToMany(mappedBy = "categorie")
+    private String name;
+    @OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL)
     private List<Produit> produits;
 
     public Categorie(String categorie) {
-        this.categorie = categorie;
+        this.name = categorie;
 
     }
 
@@ -30,12 +30,12 @@ public class Categorie {
         this.id = id;
     }
 
-    public String getCategorie() {
-        return categorie;
+    public String getName() {
+        return name;
     }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
+    public void setName(String categorie) {
+        this.name = categorie;
     }
 
     public List<Produit> getProduits() {

@@ -13,7 +13,7 @@
 
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
-            <a th:href="@{cat-new}" class="btn btn-primary btn-lg">nouveau categories</a>
+            <a th:href="@{cat-new}" class="btn btn-primary btn-lg">nouvelle categorie</a>
             </div><br />
             <div th:class="${type}" th:text="${message}"></div>
             <br />
@@ -32,6 +32,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nom de la categorie</th>
+                                <th>Voir produits</th>
                                 <th>modifier</th>
                                 <th>supprimer</th>
                             </tr>
@@ -39,7 +40,8 @@
                         <tbody>
                         <tr th:each="cat:${categories}">
                             <td th:text="${cat.id}"></td>
-                            <td th:text="${cat.categorie}"></td>
+                            <td th:text="${cat.name}"></td>
+                            <td><a th:href="@{cat-voir(id=${cat.id})}" class="btn btn-primary">Voir produits</a></td>
                             <td><a th:href="@{cat-edit(id=${cat.id})}" class="btn btn-success">modifier</a></td>
                             <td><a onclick="return confirm('etes vous sur de vouloir supprimer cette categorie ?')" th:href="@{cat-delete(id=${cat.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
                         </tr>

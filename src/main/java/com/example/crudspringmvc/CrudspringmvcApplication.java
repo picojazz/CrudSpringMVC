@@ -20,8 +20,8 @@ public class CrudspringmvcApplication {
 		org.springframework.context.ApplicationContext ctx = SpringApplication.run(CrudspringmvcApplication.class, args);
 			ProduitRepository pr = ctx.getBean(ProduitRepository.class);
 			CategorieRepository cr = ctx.getBean(CategorieRepository.class);
-			Categorie maison = cr.findCategorieByCategorie("maison");
-			Categorie ecole = cr.findCategorieByCategorie("ecole");
+			Categorie maison = cr.findCategorieByName("maison");
+			Categorie ecole = cr.findCategorieByName("ecole");
 			pr.save(new Produit("savon",200,35,maison));
             pr.save(new Produit("bic",100,25,ecole));
 
