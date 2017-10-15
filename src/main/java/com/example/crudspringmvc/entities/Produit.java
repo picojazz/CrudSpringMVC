@@ -1,5 +1,6 @@
 package com.example.crudspringmvc.entities;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;

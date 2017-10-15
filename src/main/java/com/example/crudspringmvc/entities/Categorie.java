@@ -1,5 +1,6 @@
 package com.example.crudspringmvc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ public class Categorie {
     @NotEmpty
     private String name;
     @OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Produit> produits;
 
     public Categorie(String categorie) {
