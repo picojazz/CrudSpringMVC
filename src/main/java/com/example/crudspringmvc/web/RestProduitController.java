@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://127.0.0.1:8080")
 @RestController
 public class RestProduitController {
 
@@ -30,7 +31,7 @@ public class RestProduitController {
     public List<Produit> getProduits(){
         List<Produit> lts =new ArrayList<>();
 
-        return pr.produitRest();
+        return pr.findAll();
     }
     @RequestMapping(value = "/produits/{id}", method = RequestMethod.GET)
     public Produit getProduit(@PathVariable(name = "id") Long id){
