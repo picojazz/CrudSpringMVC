@@ -1,6 +1,7 @@
 package com.example.crudspringmvc.web;
 
 
+import com.example.crudspringmvc.component.Counter;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.Produit;
 import org.apache.commons.io.IOUtils;
@@ -24,12 +25,15 @@ public class RestProduitController {
     @Autowired
     private ProduitRepository pr;
 
+
+
+
     @Value("${imgDir}")
     private String dirImage;
 
     @RequestMapping(value = "/produits")
     public List<Produit> getProduits(){
-        List<Produit> lts =new ArrayList<>();
+
 
         return pr.findAll();
     }

@@ -1,6 +1,7 @@
 package com.example.crudspringmvc.web;
 
 
+import com.example.crudspringmvc.component.Counter;
 import com.example.crudspringmvc.dao.CategorieRepository;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.Produit;
@@ -34,8 +35,10 @@ public class ProduitController {
     private CategorieRepository cr;
     @Value("${imgDir}")
     private String dirImage;
+    @Autowired
+    private Counter counter;
 
-    @RequestMapping(value = "/all")
+    @RequestMapping(value = "/admin/all")
     public String index(Model model , @RequestParam(name = "motcle",defaultValue = "")String mc,
                         @RequestParam(name = "page",defaultValue = "0")int p,
                         @RequestParam(name = "size",defaultValue = "8") int s){
@@ -49,10 +52,11 @@ public class ProduitController {
         model.addAttribute("pc",p);
         System.out.println(dirImage);
 
+
     return "index";
 
     }
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/admin/delete")
     public String delete(RedirectAttributes redirectAttributes,Long id,String mc,int p){
         pr.delete(id);
         redirectAttributes.addFlashAttribute("type","alert alert-success");
@@ -61,14 +65,15 @@ public class ProduitController {
 
         return "redirect:all?motcle="+mc+"&page="+p;
     }
-    @RequestMapping(value = "/new",method = RequestMethod.GET )
+    @RequestMapping(value = "/admin/new",method = RequestMethod.GET )
     public String ajouter(Model model){
         Produit p = new Produit();
         model.addAttribute("categories",cr.findAll());
         model.addAttribute("produit",p);
+
         return "new";
     }
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/new", method = RequestMethod.POST)
     public String add(@Valid Produit p, BindingResult result, RedirectAttributes redirectAttributes,
                       @RequestParam(name = "image") MultipartFile file) throws IOException {
         if (result.hasErrors()){
@@ -82,14 +87,14 @@ public class ProduitController {
         redirectAttributes.addFlashAttribute("message","le produit "+p.getDesignation()+" a bien été enregistrer !");
         return "redirect:all";
     }
-    @RequestMapping(value = "/edit",method = RequestMethod.GET )
+    @RequestMapping(value = "/admin/edit",method = RequestMethod.GET )
     public String edit(Model model, Long id){
         model.addAttribute("categories",cr.findAll());
         model.addAttribute("produit", pr.findOne(id));
 
         return "edit";
     }
-    @RequestMapping(value = "/edit",method = RequestMethod.POST )
+    @RequestMapping(value = "/admin/edit",method = RequestMethod.POST )
     public String editP(@Valid Produit p,BindingResult result,RedirectAttributes redirectAttributes,
                         @RequestParam(name = "id") Long id ,@RequestParam(name = "image") MultipartFile file) throws IOException {
         p.setId(id);
@@ -105,10 +110,10 @@ public class ProduitController {
 
         return "redirect:all";
     }
-    @RequestMapping(value = "/")
+    /*@RequestMapping(value = "/")
     public String home(){
         return "redirect:all";
-    }
+    }*/
 
     @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody

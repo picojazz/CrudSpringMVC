@@ -18,7 +18,7 @@
                 </div>
                 <div class="panel-body">
 
-                    <form th:action="@{edit(id=*{id})}" method="post" th:object="${produit}" enctype="multipart/form-data">
+                    <form th:action="@{/admin/edit(id=*{id})}" method="post" th:object="${produit}" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="">Designation</label>
                             <input type="text"  class="form-control" th:field="*{designation}" />

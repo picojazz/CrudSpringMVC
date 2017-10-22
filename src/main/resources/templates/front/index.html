@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" />
+    <meta charset="UTF-8" />
+    <title>PicojazzShop</title>
+</head>
+<body>
+<div class="navbar-wagon ">
+    <!-- Logo -->
+    <a href="/" class="navbar-wagon-brand">
+        Picojazz Shop
+    </a>
+
+    <!-- Right Navigation -->
+    <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+        <a href="#" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
+        <a href="#" class="navbar-wagon-item navbar-wagon-link">Services</a>
+        <a href="#" class="navbar-wagon-item navbar-wagon-link">Contactez-nous</a>
+
+        <!-- Profile picture with dropdown list -->
+        <!--<div class="navbar-wagon-item">
+            <div class="dropdown">
+                <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+                <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Dropdown appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+            <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+                <li><a href="#">Host</a></li>
+                <li><a href="#">Trips</a></li>
+                <li><a href="#">Messagese</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<section class="banner img-responsive">
+    <div class="banner-content">
+        <div class="title">Picojazz Nature </div>
+        <div class="banner-text">
+            Nous vous proposons des produits frais à moindres coûts
+        </div>
+        <br/>
+        <div class="banner-btn">
+            <a href="#" class="btn-treehouse " style="padding:10px 50px 10px 50px;" >Voir nos produits <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

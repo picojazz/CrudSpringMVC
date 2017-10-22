@@ -13,14 +13,14 @@
 
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
-            <a th:href="@{new}" class="btn btn-primary btn-lg">nouveau produit</a>
+            <a th:href="@{/admin/new}" class="btn btn-primary btn-lg">nouveau produit</a>
             </div><br />
             <div th:class="${type}" th:text="${message}"></div>
             <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">tous les produits</div>
                 <div class="panel-body">
-                    <form th:action="@{all}" method="get">
+                    <form th:action="@{/admin/all}" method="get">
                         <div class="form-inline">
                             <label for="">Mot cle</label>
                             <input type="text" name="motcle" class="form-control" th:value="${mc}"/>
@@ -47,15 +47,15 @@
                             <td th:text="${p.prix}"></td>
                             <td th:text="${p.quantite}"></td>
                             <td th:text="${p.categorie.name}"></td>
-                            <td><img class="img-circle" th:src="@{getPhoto(id=${p.id})}" width="100" height="100" /></td>
-                            <td><a th:href="@{edit(id=${p.id})}" class="btn btn-success">modifier</a></td>
-                            <td><a onclick="return confirm('etes vous sur de vouloir supprimer ce produit ?')" th:href="@{delete(id=${p.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
+                            <td><img class="img-circle" th:src="@{../getPhoto(id=${p.id})}" width="100" height="100" /></td>
+                            <td><a th:href="@{/admin/edit(id=${p.id})}" class="btn btn-success">modifier</a></td>
+                            <td><a onclick="return confirm('etes vous sur de vouloir supprimer ce produit ?')" th:href="@{/admin/delete(id=${p.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
                         </tr>
                         </tbody>
                     </table>
                     <ul class="nav nav-pills">
                         <li th:each="p,status:${pageTot}" th:class="${pc}==${status.index}?'active':''">
-                            <a th:href="@{all(page=${status.index},motcle=${mc})}"   th:text="${status.index}"></a>
+                            <a th:href="@{/admin/all(page=${status.index},motcle=${mc})}"   th:text="${status.index}"></a>
                         </li>
 
                     </ul>

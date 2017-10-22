@@ -20,7 +20,7 @@
                     </div>
                     <div class="panel-body">
 
-                        <form th:action="@{cat-new}" method="post" th:object="${categorie}">
+                        <form th:action="@{/admin/cat-new}" method="post" th:object="${categorie}">
                         <div class="form-group">
                             <label>Nom de la categorie</label>
                             <input type="text"  class="form-control"  th:field="*{name}" />

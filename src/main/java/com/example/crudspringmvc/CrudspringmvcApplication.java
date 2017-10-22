@@ -1,9 +1,11 @@
 package com.example.crudspringmvc;
 
+import com.example.crudspringmvc.component.Counter;
 import com.example.crudspringmvc.dao.CategorieRepository;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.Categorie;
 import com.example.crudspringmvc.entities.Produit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,7 +20,8 @@ import java.util.List;
 @EnableAutoConfiguration
 
 public class CrudspringmvcApplication {
-
+		/*@Autowired
+		public static Counter counter;*/
 
 	public static void main(String[] args) {
 

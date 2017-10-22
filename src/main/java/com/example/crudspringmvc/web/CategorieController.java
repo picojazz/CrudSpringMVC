@@ -20,7 +20,7 @@ public class CategorieController {
     @Autowired
     private CategorieRepository cr;
 
-    @RequestMapping(value = "/cat-all")
+    @RequestMapping(value = "/admin/cat-all")
     public String categories(Model model , @RequestParam(name = "motcle",defaultValue = "")String mc,
                              @RequestParam(name = "page",defaultValue = "0")int p,
                              @RequestParam(name = "size",defaultValue = "8") int s){
@@ -35,7 +35,7 @@ public class CategorieController {
 
         return "cat-index";
     }
-    @RequestMapping(value = "/cat-delete")
+    @RequestMapping(value = "/admin/cat-delete")
     public String delete(RedirectAttributes redirectAttributes, Integer id, String mc, int p){
         cr.delete(id);
         redirectAttributes.addFlashAttribute("type","alert alert-success");
@@ -44,14 +44,14 @@ public class CategorieController {
 
         return "redirect:cat-all?motcle="+mc+"&page="+p;
     }
-    @RequestMapping(value = "/cat-new",method = RequestMethod.GET )
+    @RequestMapping(value = "/admin/cat-new",method = RequestMethod.GET )
     public String ajouter(Model model){
         Categorie cat = new Categorie();
 
         model.addAttribute("categorie",cat);
         return "cat-new";
     }
-    @RequestMapping(value = "/cat-new", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/cat-new", method = RequestMethod.POST)
     public String add(@Valid Categorie categorie, BindingResult result, RedirectAttributes redirectAttributes){
         if (result.hasErrors()){
             return "cat-new";
@@ -61,13 +61,13 @@ public class CategorieController {
         redirectAttributes.addFlashAttribute("message","la categorie "+categorie.getName()+" a bien été enregistrer !");
         return "redirect:cat-all";
     }
-    @RequestMapping(value = "/cat-edit",method = RequestMethod.GET )
+    @RequestMapping(value = "/admin/cat-edit",method = RequestMethod.GET )
     public String edit(Model model, Integer id){
         model.addAttribute("categorie", cr.findOne(id));
 
         return "cat-edit";
     }
-    @RequestMapping(value = "/cat-edit",method = RequestMethod.POST )
+    @RequestMapping(value = "/admin/cat-edit",method = RequestMethod.POST )
     public String editC(@Valid Categorie categorie,BindingResult result,RedirectAttributes redirectAttributes,
                         @RequestParam(name = "id") Integer id){
         categorie.setId(id);
@@ -80,7 +80,7 @@ public class CategorieController {
 
         return "redirect:cat-all";
     }
-    @RequestMapping(value = "/cat-voir")
+    @RequestMapping(value = "/admin/cat-voir")
     public String voir(Model model, Integer id){
         model.addAttribute("categorie",cr.findOne(id));
 

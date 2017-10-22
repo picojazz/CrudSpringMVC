@@ -13,14 +13,14 @@
 
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
-            <a th:href="@{cat-new}" class="btn btn-primary btn-lg">nouvelle categorie</a>
+            <a th:href="@{/admin/cat-new}" class="btn btn-primary btn-lg">nouvelle categorie</a>
             </div><br />
             <div th:class="${type}" th:text="${message}"></div>
             <br />
             <div class="panel panel-primary">
                 <div class="panel-heading">tous les categories</div>
                 <div class="panel-body">
-                    <form th:action="@{cat-all}" method="get">
+                    <form th:action="@{/admin/cat-all}" method="get">
                         <div class="form-inline">
                             <label for="">Mot cle</label>
                             <input type="text" name="motcle" class="form-control" th:value="${mc}"/>
@@ -41,15 +41,15 @@
                         <tr th:each="cat:${categories}">
                             <td th:text="${cat.id}"></td>
                             <td th:text="${cat.name}"></td>
-                            <td><a th:href="@{cat-voir(id=${cat.id})}" class="btn btn-primary">Voir produits</a></td>
-                            <td><a th:href="@{cat-edit(id=${cat.id})}" class="btn btn-success">modifier</a></td>
-                            <td><a onclick="return confirm('etes vous sur de vouloir supprimer cette categorie ?')" th:href="@{cat-delete(id=${cat.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
+                            <td><a th:href="@{/admin/cat-voir(id=${cat.id})}" class="btn btn-primary">Voir produits</a></td>
+                            <td><a th:href="@{/admin/cat-edit(id=${cat.id})}" class="btn btn-success">modifier</a></td>
+                            <td><a onclick="return confirm('etes vous sur de vouloir supprimer cette categorie ?')" th:href="@{/admin/cat-delete(id=${cat.id},mc=${mc},p=${pc})}" class="btn btn-danger">supprimer</a></td>
                         </tr>
                         </tbody>
                     </table>
                     <ul class="nav nav-pills">
                         <li th:each="cat,status:${pageTot}" th:class="${pc}==${status.index}?'active':''">
-                            <a th:href="@{cat-all(page=${status.index},motcle=${mc})}"   th:text="${status.index}"></a>
+                            <a th:href="@{/admin/cat-all(page=${status.index},motcle=${mc})}"   th:text="${status.index}"></a>
                         </li>
 
                     </ul>
