@@ -4,13 +4,14 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
     <link rel="stylesheet" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" />
+    <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootsrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
     <meta charset="UTF-8" />
     <title>PicojazzShop</title>
 </head>
 <body>
 <div class="navbar-wagon ">
-    <!-- Logo -->
-    <a href="/" class="navbar-wagon-brand">
+    <!-- Logo -->    <a href="/" class="navbar-wagon-brand">
         Picojazz Shop
     </a>
 
@@ -54,10 +55,72 @@
         <div class="banner-text">
             Nous vous proposons des produits frais à moindres coûts
         </div>
-        <br/>
+        <br/><br/>
         <div class="banner-btn">
             <a href="#" class="btn-treehouse " style="padding:10px 50px 10px 50px;" >Voir nos produits <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
+    </div>
+</section>
+<section class="lastProd">
+    <div style="padding-left: 50px;padding-top:35px;">
+        <span class="lastProd-title">Nos derniers produits </span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="row">
+
+                <div class="col-md-3 col-md-offset-9">
+                    <!-- Controls -->
+                    <div class="controls pull-right hidden-xs">
+                        <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example"
+                           data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example"
+                                                    data-slide="next"></a>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div  class="col-sm-3">
+                                <div class="col-item">
+                                    <div class="photo">
+                                        <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price col-md-6">
+                                                <h5>
+                                                    Sample Product</h5>
+                                                <h5 class="price-text-color">
+                                                    $199.99</h5>
+                                            </div>
+                                            <div class="rating hidden-sm col-md-6">
+
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class=" price-text-color">ajout au panier</a></p>
+                                            <p class="btn-details">
+                                                <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" >Plus details</a></p>
+                                        </div>
+                                        <div class="clearfix">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
