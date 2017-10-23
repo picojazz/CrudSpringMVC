@@ -80,26 +80,26 @@
 
             </div>
             <br />
-            <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <div id="carousel-example" class="carousel slide " data-ride="carousel">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="row">
-                            <div  class="col-sm-3">
+                            <div th:each="p,status:${produits}" th:if="${status.index &lt; 4}" class="col-sm-3">
                                 <div class="col-item">
                                     <div class="photo">
-                                        <img src="http://placehold.it/350x260" class="img-responsive" alt="a" />
+                                        <img th:src="@{getPhoto(id=${p.id})}" class="img-responsive" alt="a" />
                                     </div>
                                     <div class="info">
                                         <div class="row">
                                             <div class="price col-md-6">
-                                                <h5>
+                                                <h5 th:text="${p.designation}">
                                                     Sample Product</h5>
-                                                <h5 class="price-text-color">
+                                                <h5 th:text="${p.prix}+' F cfa'" class="price-text-color">
                                                     $199.99</h5>
                                             </div>
                                             <div class="rating hidden-sm col-md-6">
-
+                                                <h3>1 KG</h3>
                                             </div>
                                         </div>
                                         <div class="separator clear-left">
@@ -112,8 +112,43 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br/>
                             </div>
 
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div th:each="p,status:${produits}" th:if="${status.index &gt; 3}" class="col-sm-3">
+                                <div class="col-item">
+                                    <div class="photo">
+                                        <img th:src="@{getPhoto(id=${p.id})}" class="img-responsive" alt="a" />
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price col-md-6">
+                                                <h5 th:text="${p.designation}">
+                                                    Sample Product</h5>
+                                                <h5 th:text="${p.prix}+' F cfa'" class="price-text-color">
+                                                    $199.99</h5>
+                                            </div>
+                                            <div class="rating hidden-sm col-md-6">
+                                                <h3>1 KG</h3>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class=" price-text-color">ajout au panier</a></p>
+                                            <p class="btn-details">
+                                                <i class="fa fa-list"></i><a href="http://www.jquery2dotnet.com" >Plus details</a></p>
+                                        </div>
+                                        <div class="clearfix">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
                         </div>
                     </div>
 
@@ -122,6 +157,9 @@
         </div>
 
     </div>
+</section>
+<section class="partner">
+
 </section>
 
 </body>
