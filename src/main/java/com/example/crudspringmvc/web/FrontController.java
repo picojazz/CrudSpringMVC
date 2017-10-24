@@ -17,4 +17,10 @@ public class FrontController {
         model.addAttribute("produits",pr.findAll());
         return "front/index";
     }
+    @RequestMapping(value = "/product-all")
+    public String product(Model model){
+
+        model.addAttribute("produits",pr.findAll());
+        return "front/product-all";
+    }
 }
