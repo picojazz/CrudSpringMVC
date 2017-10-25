@@ -19,9 +19,10 @@
 
     <div class="navbar-wagon-right hidden-xs hidden-sm" >
 
-        <a href="#" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
+        <a href="/" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
+        <a th:href="@{/product-all}" class="navbar-wagon-item navbar-wagon-link">Tous Nos Produits</a>
         <a href="#" class="navbar-wagon-item navbar-wagon-link"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i></a>
-        <a href="#" class="navbar-wagon-item  btn-treehouse" ><span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+        <a href="#" class="navbar-wagon-item  btn-treehouse" ><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</a>
 
         <!-- Profile picture with dropdown list -->
         <!--<div class="navbar-wagon-item">
@@ -49,8 +50,24 @@
         </div>
     </div>
 </div>
-<div layout:fragment="content">
+<div class="container" >
 
+    <div class="row" style="margin-top:80px;margin-bottom: 25px;">
+        <div class="col-md-3 " style="padding-top: 40px;">
+            <div style="position: fixed;" class="border">
+                <form th:action="@{/product-all}">
+                    <div class="form-group">
+                        <label for="">Mot cle :</label>
+                        <input type="text" name="motcle" th:value="${mc}" class="form-control" /><br />
+                        <input type="submit" class="btn btn-success" value="Recherche" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div layout:fragment="content">
+
+        </div>
+    </div>
 </div>
 
 <div class="footer">

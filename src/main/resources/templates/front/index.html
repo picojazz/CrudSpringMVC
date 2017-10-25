@@ -18,9 +18,10 @@
     <!-- Right Navigation -->
     <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-        <a href="#" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
+        <a href="/" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
+        <a th:href="@{/product-all}" class="navbar-wagon-item navbar-wagon-link">Tous Nos Produits</a>
         <a href="#" class="navbar-wagon-item navbar-wagon-link"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i></a>
-        <a href="#" class="navbar-wagon-item  btn-treehouse" >Se connecter</a>
+        <a href="#" class="navbar-wagon-item  btn-treehouse" ><i class="fa fa-sign-in" aria-hidden="true" ></i> Se connecter</a>
 
         <!-- Profile picture with dropdown list -->
         <!--<div class="navbar-wagon-item">
@@ -57,7 +58,7 @@
         </div>
         <br/><br/>
         <div class="banner-btn">
-            <a href="#" class="btn-treehouse " style="padding:10px 50px 10px 50px;" >Voir nos produits <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            <a th:href="@{/product-all}" class="btn-treehouse " style="padding:10px 50px 10px 50px;" >Voir nos produits <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </div>
 </section>
@@ -171,13 +172,13 @@
         <div class="col-md-3"><img src="../../img/partner.png" alt="" width="150" height="150" /></div>
     </div>
 </section>
-<section class="contact">
+<section class="contact" style="padding-bottom: 120px;">
     <div style="padding-left: 50px;padding-top:35px;color:black;">
-        <span class="lastProd-title" style="color:#757575 ;border-bottom: 5px #757575  solid;">Contact </span>
+        <span class="lastProd-title" >Contact </span>
         <br/>
         <br/>
     </div>
-    <div class="container">
+    <div class="container" style="color:white;">
         <div class="col-md-6">
     <div class="form-group">
         <label for="">Nom :</label>
@@ -194,7 +195,7 @@
     <button class="btn-treehouse ">Envoyer</button>
 
         </div>
-        <div class="col-md-6 text-center" style="font-size: 20px;font-weight: bold;padding-top: 60px;">
+        <div class="col-md-6 text-center" style="color:white;font-size: 20px;font-weight: bold;padding-top: 60px;">
             Senegal,Dakar, Ouakam, en face de la de l'ecole stella maris <br/>
             BP : 3310 <br/>
             TEL : 77 000 00 00 <br/>
