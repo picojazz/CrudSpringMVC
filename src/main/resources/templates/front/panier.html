@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="front/front-layout">
+<html lang="en" >
 <head xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
@@ -11,22 +10,49 @@
     <title>Panier</title>
 </head>
 <body>
-<div layout:fragment="content">
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+<div class="row">
 
-    <div class="col-md-9" style="padding-top: 40px;">
+    <div class="col-md-12" style="padding-top: 60px;padding-bottom:120px; ">
+        <h1 class="text-center">Panier</h1>
+        <div th:class="${type}" th:text="${message}"></div>
         <div class="panel panel-default  panel--styled">
             <div class="panel-body">
                 <div class="col-md-12 panelTop">
-                    <h1>gfhfghfgh</h1>
+
+                    <ul class="list-group">
+                        <li th:each="l:${panier}" class="list-group-item">
+                            <div class="ligneCom">
+                                <img class="img-responsive img-circle" th:src="@{../getPhoto(id=${l.produit.id})}" width="60" height="140" alt=""/>
+                                <h4 th:text="${l.produit.designation}">Savon</h4>
+                                <h4 th:text="${l.produit.prix+' F cfa / KG'}">250 F cfa /KG</h4>
+                                <form th:action="@{/modif-panier}">
+                                <div class="form-inline text-center">
+                                    <label for="" >quantité : </label>
+                                    <input type="hidden" name="id" th:value="${l.produit.id}"/>
+                                    <input type="number" name="qte" class="form-control" th:value="${l.qte}" style="width:70px;"/>
+                                    <label for="">KG</label>
+                                    <button type="submit"  class="btn btn-default">modifier</button>
+                                </div>
+                                </form>
+                                <h4 th:text="${'Montant : '+l.produit.prix*l.qte+' FCFA'}">Montant : 15000 FCFA</h4>
+                                <a th:href="@{/delete-panier(id=${l.produit.id})}" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            </div>
+                        </li>
+
+                    </ul>
                 </div>
 
                 <div class="col-md-12 panelBottom">
-                    <h1>fdgd</h1>
+                    <h1 class="text-right">TOTAL : <span style="color:#3ac162;" th:text="${total+' F CFA'}"> 250000 F CFA</span></h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
 
 
 
@@ -34,7 +60,6 @@
 
 
 
-<!-- Modal -->
 
 
 </body>

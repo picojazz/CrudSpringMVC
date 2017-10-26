@@ -16,6 +16,7 @@
             <div class="col-md-9" style="padding-top: 40px;">
                 <div class="panel panel-default  panel--styled">
                     <div class="panel-body">
+                        <form th:action="@{/add-panier}" method="get">
                         <div class="col-md-12 panelTop">
                             <div class="col-md-4">
                                 <img class="img-responsive" th:src="@{../getPhoto(id=${produit.id})}" alt=""/>
@@ -26,7 +27,8 @@
                                 <br/><br/>
                                 <div class="form-inline">
                                     <label for="">Quantite a commander :</label>
-                                    <input type="number" class="form-control" value="1" />
+                                    <input type="hidden" name="id" th:value="${produit.id}"/>
+                                    <input type="number" name="qte" class="form-control" value="1" />
                                     <label>KG</label>
                                 </div>
                             </div>
@@ -40,11 +42,10 @@
                                 <h5>Prix : <span class="itemPrice" th:text="${produit.prix+' FCFA'}">3500 F CFA</span> /KG</h5>
                             </div>
                             <div class="col-md-4">
-                                <div class="stars">
-                                    <div id="stars" class="starrr"></div>
-                                </div>
+
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -27,4 +27,14 @@ public class Panier {
     public void setListesProds(List<LigneCommande> listesProds) {
         this.listesProds = listesProds;
     }
+
+    public int total(){
+        int total = 0;
+        for (LigneCommande l : listesProds ) {
+            total += l.getProduit().getPrix()*l.getQte();
+
+        }
+
+        return total;
+    }
 }

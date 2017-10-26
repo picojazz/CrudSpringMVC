@@ -348,3 +348,8 @@ span.itemPrice {
     font-size: 24px;
     color: #2ecc75;
 }
+.ligneCom{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

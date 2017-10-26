@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head  xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
     <link rel="stylesheet" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" />
@@ -11,17 +11,17 @@
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"></div>
-<div class="container" >
-
-    <div class="row" style="margin-top:80px;margin-bottom: 25px;">
-        <div th:replace="fragments/bar-recherche :: bar-recherche"></div>
-        <div layout:fragment="content">
-
-        </div>
+<div class="col-md-3 " style="padding-top: 40px;" th:fragment="bar-recherche">
+    <div style="position: fixed;" class="border">
+        <form th:action="@{/product-all}">
+            <div class="form-group">
+                <label for="">Mot cle :</label>
+                <input type="text" name="motcle" th:value="${mc}" class="form-control" /><br />
+                <input type="submit" class="btn btn-success" value="Recherche" />
+            </div>
+        </form>
     </div>
 </div>
-<div th:replace="fragments/footer :: footer"></div>
 
 </body>
 </html>
