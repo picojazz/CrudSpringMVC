@@ -14,7 +14,12 @@
 <script>
     $(document).ready(function (){
         $.get("http://127.0.0.1:2000/npanier",function (data){
-            $('.npanier').text(data)
+            if(data == 0){
+                $('.npanier').hide()
+            }else{
+                $('.npanier').text(data).show()
+            }
+
         })
     });
 </script>
@@ -29,7 +34,7 @@
 
         <a href="/" class="navbar-wagon-item navbar-wagon-link">Accueil</a>
         <a th:href="@{/product-all}" class="navbar-wagon-item navbar-wagon-link">Tous Nos Produits</a>
-        <a th:href="@{/panier}" class="navbar-wagon-item navbar-wagon-link"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> <span class="badge npanier" ></span></a>
+        <a th:href="@{/panier}" class="navbar-wagon-item navbar-wagon-link"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> <span class="badge npanier " ></span></a>
         <a href="#" class="navbar-wagon-item  btn-treehouse" ><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</a>
 
         <!-- Profile picture with dropdown list -->

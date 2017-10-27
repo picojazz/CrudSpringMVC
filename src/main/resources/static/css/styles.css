@@ -352,4 +352,13 @@ span.itemPrice {
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
+}.npanier{
+     background-color: #2ecc75 !important;
+ }
+.cat{
+
+    padding-bottom:4px;
+    padding-top:2px;
+    color: #3498db;
+
+   }

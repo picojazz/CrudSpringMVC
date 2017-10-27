@@ -2,6 +2,7 @@ package com.example.crudspringmvc.web;
 
 
 import com.example.crudspringmvc.component.Panier;
+import com.example.crudspringmvc.dao.CategorieRepository;
 import com.example.crudspringmvc.dao.ProduitRepository;
 import com.example.crudspringmvc.entities.LigneCommande;
 import com.example.crudspringmvc.entities.Produit;
@@ -19,10 +20,12 @@ public class FrontController {
     private ProduitRepository pr;
     @Autowired
     private Panier panier;
+    @Autowired
+    private CategorieRepository cr;
 
     @RequestMapping(value = "/")
     public String home(Model model){
-        model.addAttribute("produits",pr.findAll());
+        model.addAttribute("produits",pr.produitFront(new PageRequest(0,8)));
         return "front/index";
     }
     @RequestMapping(value = "/product-all")
@@ -112,5 +115,20 @@ public class FrontController {
 
 
         return "redirect:panier";
+    }
+    @RequestMapping(value = "/product-all/cat/{cat}")
+    public String categorie(Model model, @PathVariable("cat") String cat,
+                            @RequestParam(name = "page",defaultValue = "0")int p,
+                            @RequestParam(name = "size",defaultValue = "8") int s){
+
+
+        model.addAttribute("cat",cat);
+        Page<Produit> produits = pr.categorie(cat,new PageRequest(p,s));
+        int[] pageTotals = new int[produits.getTotalPages()];
+
+        model.addAttribute("produits",produits);
+        model.addAttribute("pageTot",pageTotals);
+        model.addAttribute("pc",p);
+        return "front/categorie";
     }
 }
