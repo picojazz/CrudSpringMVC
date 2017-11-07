@@ -19,17 +19,20 @@
 
         <div class="col-md-4 col-md-offset-1">
             <h2 class="text-center"><i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</h2>
-            <form th:action="@{signup}" method="post">
+            <form th:action="@{signup}" method="post" th:object="${user}">
                 <div class="form-group">
                     <label for="">Username :</label>
-                    <input type="text" name="username" class="form-control" />
+                    <input type="text" th:field="*{username}" class="form-control" />
+                    <span class="text-danger" th:errors="*{username}"></span>
                 </div><div class="form-group">
                 <label for="">Email :</label>
-                <input type="email" name="username" class="form-control" />
+                <input type="email" th:field="*{email}" class="form-control" />
+                <span class="text-danger" th:errors="*{email}"></span>
             </div>
                 <div class="form-group">
                     <label for="">Password :</label>
-                    <input type="password" name="password" class="form-control" />
+                    <input type="password" th:field="*{password}" class="form-control" />
+                    <span class="text-danger" th:errors="*{password}"></span>
                 </div>
                 <button type="submit" class="btn btn-success">S'inscrire</button>
             </form>

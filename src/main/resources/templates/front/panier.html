@@ -20,7 +20,7 @@
         <div class="panel panel-default  panel--styled">
             <div class="panel-body">
                 <div class="col-md-12 panelTop">
-
+                    <h2 th:if="${total}==0">Votre panier est vide !</h2>
                     <ul class="list-group">
                         <li th:each="l:${panier}" class="list-group-item">
                             <div class="ligneCom">

@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -30,18 +31,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                .usersByUsernameQuery("select username as principal,password as credentials ,active from user where username =?")
                .authoritiesByUsernameQuery("select u.username as principal,r.role as role from user u ,role r, users_roles ur where u.id=ur.user_id and r.id=ur.role_id and u.username=?")
                .rolePrefix("ROLE_")
-               .passwordEncoder(new Md5PasswordEncoder());
+               .passwordEncoder(new BCryptPasswordEncoder());
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login");
-        //http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/login").permitAll();
         //http.authorizeRequests().anyRequest().authenticated();
         //http.authorizeRequests().antMatchers("/all").permitAll();
-        //http.authorizeRequests().antMatchers("/new","/delete","/edit").permitAll();
-       // http.exceptionHandling().accessDeniedPage("/403");
+        http.authorizeRequests().antMatchers("/admin/*").hasRole("admin");
+        http.exceptionHandling().accessDeniedPage("/403");
 
 
     }
