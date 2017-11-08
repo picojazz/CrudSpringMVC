@@ -131,4 +131,9 @@ public class FrontController {
         model.addAttribute("pc",p);
         return "front/categorie";
     }
+    @RequestMapping(value = "/404")
+    @ResponseBody
+    public String error(){
+        return "404";
+    }
 }
