@@ -45,6 +45,9 @@
                 </div>
 
                 <div class="col-md-12 panelBottom">
+                    <div class="text-center">
+                        <a href="#" th:if="${total}!=0" class=" btn btn-lg btn-add-to-cart"><i class="fa fa-credit-card-alt" style="font-size: 25px;"></i>  Commander</a>
+                    </div>
                     <h1 class="text-right">TOTAL : <span style="color:#3ac162;" th:text="${total+' F CFA'}"> 250000 F CFA</span></h1>
                 </div>
             </div>

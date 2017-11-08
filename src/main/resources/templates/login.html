@@ -15,6 +15,7 @@
     <div class="row"><br />
         <div class="alert alert-danger" th:if="${param.error}">Username ou password incorrect !</div>
         <div class="alert alert-success" th:if="${param.logout}">deconnexion reussie !</div>
+        <div th:class="${type}" th:text="${message}"></div>
         <br />
 
         <div class="col-md-4 col-md-offset-1">
