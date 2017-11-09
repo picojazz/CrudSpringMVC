@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Produit implements Serializable{
@@ -24,6 +25,8 @@ public class Produit implements Serializable{
     @NotNull
     private Categorie categorie;
     private String photo;
+    @OneToMany(mappedBy = "produit",cascade = CascadeType.ALL)
+    private List<LigneCommande> ligneCommandes;
 
     public Produit() {
     }

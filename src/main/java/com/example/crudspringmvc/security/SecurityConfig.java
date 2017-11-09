@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login");
         http.authorizeRequests().antMatchers("/login").permitAll();
-        //http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/me").authenticated();
         //http.authorizeRequests().antMatchers("/all").permitAll();
         http.authorizeRequests().antMatchers("/admin/*").hasRole("admin");
         http.exceptionHandling().accessDeniedPage("/403");

@@ -3,6 +3,7 @@ package com.example.crudspringmvc;
 import com.example.crudspringmvc.component.Counter;
 import com.example.crudspringmvc.dao.*;
 import com.example.crudspringmvc.entities.Categorie;
+import com.example.crudspringmvc.entities.Commande;
 import com.example.crudspringmvc.entities.Produit;
 import com.example.crudspringmvc.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,11 @@ public class CrudspringmvcApplication {
 
 			ProduitRepository pr = ctx.getBean(ProduitRepository.class);
 			CategorieRepository cr = ctx.getBean(CategorieRepository.class);
-
+			CommandeRepository comr = ctx.getBean(CommandeRepository.class);
+			UserRepository ur = ctx.getBean(UserRepository.class);
+			/*Long id = new Long(9);
+			Commande com = new Commande(ur.findOne(id));
+			comr.save(com);*/
 
 
 

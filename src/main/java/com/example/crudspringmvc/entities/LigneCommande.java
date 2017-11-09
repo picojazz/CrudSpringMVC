@@ -1,6 +1,16 @@
 package com.example.crudspringmvc.entities;
 
+import javax.persistence.*;
+
+@Entity
 public class LigneCommande {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "id_commande")
+    private Commande commande;
+    @ManyToOne
+    @JoinColumn(name = "id_produit")
     private Produit produit;
     private int qte;
 
